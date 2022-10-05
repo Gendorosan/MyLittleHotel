@@ -52,6 +52,8 @@ class Reserved(models.Model):
     reserved_id = models.AutoField('Id записи', primary_key=True)
     client_id = models.ForeignKey(Client, on_delete=models.CASCADE)
     room_id = models.ForeignKey(Room, on_delete=models.CASCADE)
+    start_date = models.DateField('Начало брони')
+    end_date = models.DateField('Окончание брони')
 
     def __str__(self):
         return f'{self.reserved_id}'

@@ -5,18 +5,83 @@ from django.http import JsonResponse
 
 from django.http import Http404, HttpResponseRedirect
 
-JsonResponse.charset = 'utf-8'
 
-def test(request):
+def all_rooms(request):
     rooms = Room.objects.all()
-
-    print({'rooms': [room.name for room in rooms]})
-    for room in rooms:
-        print(room)
 
     return JsonResponse(
         {
-            'rooms': [room.name for room in rooms]
+            'rooms': [
+                {
+                    'name': room.name,
+                    'price': room.cost,
+                    'seating_capacity': room.seating_capacity
+                } for room in rooms
+            ]
+        }, status=200, json_dumps_params={'ensure_ascii': False}
+    )
+
+
+def minimum_price(request):
+    rooms = Room.objects.order_by('cost')
+
+    return JsonResponse(
+        {
+            'rooms': [
+                {
+                    'name': room.name,
+                    'price': room.cost,
+                    'seating_capacity': room.seating_capacity
+                } for room in rooms
+            ]
+        }, status=200, json_dumps_params={'ensure_ascii': False}
+    )
+
+
+def maximum_price(request):
+    rooms = Room.objects.order_by('-cost')
+
+    return JsonResponse(
+        {
+            'rooms': [
+                {
+                    'name': room.name,
+                    'price': room.cost,
+                    'seating_capacity': room.seating_capacity
+                } for room in rooms
+            ]
+        }, status=200, json_dumps_params={'ensure_ascii': False}
+    )
+
+
+def minimum_seating_capacity(request):
+    rooms = Room.objects.order_by('-seating_capacity')
+
+    return JsonResponse(
+        {
+            'rooms': [
+                {
+                    'name': room.name,
+                    'price': room.cost,
+                    'seating_capacity': room.seating_capacity
+                } for room in rooms
+            ]
+        }, status=200, json_dumps_params={'ensure_ascii': False}
+    )
+
+
+def maximum_seating_capacity(request):
+    rooms = Room.objects.order_by('-seating_capacity')
+
+    return JsonResponse(
+        {
+            'rooms': [
+                {
+                    'name': room.name,
+                    'price': room.cost,
+                    'seating_capacity': room.seating_capacity
+                } for room in rooms
+            ]
         }, status=200, json_dumps_params={'ensure_ascii': False}
     )
 
