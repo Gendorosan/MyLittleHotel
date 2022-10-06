@@ -136,7 +136,14 @@ def get_free_rooms(request):
     data = json.loads(request.body.decode('utf-8'))
     start_date = data['start_date']
     end_date = data['end_date']
-
+    if start_date > end_date:
+        return JsonResponse(
+            {
+                "code": 400,
+                "message": "Validation Failed"
+            },
+            status=400
+        )
     return JsonResponse(check_free_rooms(start_date, end_date), status=200, json_dumps_params={'ensure_ascii': False})
 
 
@@ -233,6 +240,15 @@ def cancel_reservation(request):
     start_date = data['start_date']
     end_date = data['end_date']
 
+    if start_date > end_date:
+        return JsonResponse(
+            {
+                "code": 400,
+                "message": "Validation Failed"
+            },
+            status=400
+        )
+
     login_from_jwt = jwt.decode(request.headers['Authorization'], JWT_SECRET, algorithms=['HS256'])['login']
 
     if login_from_data != login_from_jwt:
@@ -263,6 +279,15 @@ def create_reservation(request):
     reservation = data['room_name']
     start_date = data['start_date']
     end_date = data['end_date']
+
+    if start_date > end_date:
+        return JsonResponse(
+            {
+                "code": 400,
+                "message": "Validation Failed"
+            },
+            status=400
+        )
 
     login_from_jwt = jwt.decode(request.headers['Authorization'], JWT_SECRET, algorithms=['HS256'])['login']
 
