@@ -1,12 +1,7 @@
 # from app.internal.models.admin_user import AdminUser
 from django.db import models
+import asyncio
 
-"""
-class AdminUser(models.Model):
-    admin_id = models.AutoField(primary_key=True)
-    login = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-"""
 
 
 class Room(models.Model):
@@ -17,6 +12,9 @@ class Room(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+    def get_id(self):
+        return f'{self.room_id}'
 
     """
     def is_reserved(self):
@@ -34,7 +32,7 @@ class Room(models.Model):
 
 class Client(models.Model):
     client_id = models.AutoField('Id клиента', primary_key=True)
-    login = models.CharField('Логин клиента', max_length=255)
+    login = models.CharField('Логин клиента', unique=True, max_length=255)
     password = models.CharField('Пароль клиента', max_length=255)
     name = models.CharField('Имя клиента', max_length=255)
     phone_number = models.CharField('Номер телефона клиента', max_length=255)
@@ -43,6 +41,8 @@ class Client(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    def get_id(self):
+        return self.client_id
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
@@ -58,6 +58,20 @@ class Reserved(models.Model):
     def __str__(self):
         return f'{self.reserved_id}'
 
+    def get_room_name(self):
+        return f'{self.room_id}'
+
     class Meta:
         verbose_name = 'Бронь'
         verbose_name_plural = 'Бронь'
+
+
+class Jwt(models.Model):
+    token = models.CharField('Токен доступа', unique=True, max_length=255)
+    client_id = models.ForeignKey(Client, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.token}'
+
+    def get_token(self):
+        return self.token
