@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+
+  backend_app:
+    ports:
+      - "8000:8000"
+    restart: on-failure
+    build: ./
+
+
+  postgres:
+    image: postgres:14.1-alpine
+    environment:
+      POSTGRES_USER: "uuthlsar"
+      POSTGRES_PASSWORD: "ja8AEmCuvd-v0bBm5ezCStlqc3juT7sB"
+      POSTGRES_DB: "uuthlsar"
+      POSTGRES_HOST: "ella.db.elephantsql.com"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - .sql_scripts:/docker-entrypoint-initdb.d
+
+volumes:
+  db-data:
