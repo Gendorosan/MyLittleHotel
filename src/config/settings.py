@@ -20,19 +20,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jfj91s#!2r79m%w=u@dg1+&nzxco+p(y%0cd_-tk*1-+#lrfe#'
+SECRET_KEY = "django-insecure-jfj91s#!2r79m%w=u@dg1+&nzxco+p(y%0cd_-tk*1-+#lrfe#"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(PROJECT_ROOT, 'app'))
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "app"))
 
 # Application definition
 
 INSTALLED_APPS = [
-    'grappelli',
+    "grappelli",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -79,11 +79,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'MyLittleHotel',
-        "USER": 'postgres',
-        "PASSWORD": ' ',
-        "HOST": 'localhost',
-        "PORT": '5432'
+        "NAME": "uuthlsar",
+        "USER": "uuthlsar",
+        "PASSWORD": "ja8AEmCuvd-v0bBm5ezCStlqc3juT7sB",
+        "HOST": "ella.db.elephantsql.com",
+        "PORT": "5432",
     }
 }
 
@@ -125,4 +125,4 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
