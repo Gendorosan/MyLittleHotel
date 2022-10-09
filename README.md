@@ -1,3 +1,18 @@
+## Инструкция по установке
+1. Склонировать репозиторий
+```
+git clone https://github.com/Gendorosan/MyLittleHotel.git
+```
+2. Перейти в папку проекта, подгрузить зависимости
+```
+python -m pip install -r requirements.txt
+```
+3. Перейти в директорию src и запустить сервер
+```
+python manage.py runserver
+```
+4. Вы великолепны, можете посетить админку сайта - http://127.0.0.1:8000/admin/
+
 ## Api MyLittleHottel имеет следующие эндпоинты:
 
 ---
