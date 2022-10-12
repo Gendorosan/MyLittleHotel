@@ -1,7 +1,3 @@
-from django.test import TestCase
-from rest_framework.test import APITestCase
-import json
-from django.urls import reverse
 from rest_framework.test import APITestCase, RequestsClient
 import json
 from rest_framework import status

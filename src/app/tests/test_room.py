@@ -58,6 +58,5 @@ class RoomTestCate(APITestCase):
             url, data=json.dumps({"login": "gendorosan", "start_date": "2022-10-5", "end_date": "2022-10-7"})
         )
         serializer_data = RoomSerializer(room_2).data
-
         self.assertEqual(status.HTTP_200_OK, response.status_code)
         self.assertEqual(response.json()[0], dict(serializer_data))
