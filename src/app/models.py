@@ -13,15 +13,6 @@ class Room(models.Model):
     def get_id(self):
         return f"{self.room_id}"
 
-    """
-    def is_reserved(self):
-        return self.reserved_set.all()
-        # a.reserved_set.create()
-        # a.reserved_set.count()
-        # a.reserved_set.filter()
-        # __startswith = ''
-    """
-
     class Meta:
         verbose_name = "Номер"
         verbose_name_plural = "Номера"
